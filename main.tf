@@ -32,11 +32,3 @@ module "lambda" {
 
 
 }
-
-module "s3" {
-  source      = "./terraform_modules/s3"
-  bucket_name = var.bucket_name
-  bucket_env  = var.bucket_env
-  bucket_tag  = var.bucket_tag
-
-}

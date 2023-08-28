@@ -97,13 +97,3 @@ variable "api_gw_exec_arn" {
 
 
 
-#### S3 ######
-
-variable "bucket_env" {
-  type = string
-
-}
-variable "bucket_tag" {
-  type = string
-
-}

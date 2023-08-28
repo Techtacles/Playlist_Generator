@@ -41,3 +41,7 @@ variable "ecr_image_uri" {
   type = string
 
 }
+variable "ecr_sha" {
+  type = string
+
+}

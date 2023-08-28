@@ -90,10 +90,7 @@ variable "lambda_memory_size" {
   type = number
 
 }
-variable "api_gw_exec_arn" {
-  type = string
 
-}
 
 
 

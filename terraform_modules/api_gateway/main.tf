@@ -27,6 +27,12 @@ resource "aws_api_gateway_integration" "api_gw_integration" {
   integration_http_method = "POST"
 }
 
+resource "aws_api_gateway_stage" "api_gw_stage" {
+  deployment_id = aws_api_gateway_deployment.api_gw_deployment.id
+  rest_api_id   = aws_api_gateway_rest_api.api_gw_rest.id
+  stage_name    = var.api_gw_stage_name
+}
+
 resource "aws_api_gateway_deployment" "api_gw_deployment" {
   rest_api_id = aws_api_gateway_rest_api.api_gw_rest.id
 
@@ -50,11 +56,7 @@ resource "aws_api_gateway_deployment" "api_gw_deployment" {
   }
 }
 
-resource "aws_api_gateway_stage" "api_gw_stage" {
-  deployment_id = aws_api_gateway_deployment.api_gw_deployment.id
-  rest_api_id   = aws_api_gateway_rest_api.api_gw_rest.id
-  stage_name    = var.api_gw_stage_name
-}
+
 
 ###ENABLE CORS
 resource "aws_api_gateway_method" "options" {

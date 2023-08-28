@@ -9,10 +9,10 @@ resource "aws_lambda_function" "lambda_fn" {
 
   #runtime = var.lambda_runtime
 
-  timeout      = var.lambda_timeout
-  memory_size  = var.lambda_memory_size
-  #image_uri    = "${var.ecr_image_uri}@${var.ecr_sha}"
-  image_uri    = "${var.ecr_image_uri}:latest"
+  timeout     = var.lambda_timeout
+  memory_size = var.lambda_memory_size
+  image_uri   = "${var.ecr_image_uri}@${var.ecr_sha}"
+  #image_uri    = "${var.ecr_image_uri}:latest"
   package_type = "Image"
 
 

@@ -23,8 +23,8 @@ module "lambda" {
   lambda_role          = var.lambda_role
   lambda_src_file_path = var.lambda_src_file_path
   lambda_fn_name       = var.lambda_fn_name
-  lambda_handler       = var.lambda_handler
-  lambda_runtime       = var.lambda_runtime
+  #lambda_handler       = var.lambda_handler
+  #lambda_runtime       = var.lambda_runtime
   lambda_timeout       = var.lambda_timeout
   api_gw_exec_arn      = module.api_gw.api_gw_lambda_exec_arn
   lambda_memory_size   = var.lambda_memory_size

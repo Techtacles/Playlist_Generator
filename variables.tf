@@ -63,14 +63,14 @@ variable "lambda_fn_name" {
 
 }
 
-variable "lambda_handler" {
+/* variable "lambda_handler" {
   type = string
 
 }
 variable "lambda_runtime" {
   type = string
 
-}
+} */
 variable "lambda_timeout" {
   type = number
 

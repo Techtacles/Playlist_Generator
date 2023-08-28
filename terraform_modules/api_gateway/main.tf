@@ -19,11 +19,12 @@ resource "aws_api_gateway_method" "api_gw_method" {
 }
 
 resource "aws_api_gateway_integration" "api_gw_integration" {
-  http_method = aws_api_gateway_method.api_gw_method.http_method
-  resource_id = aws_api_gateway_resource.api_gw_resource.id
-  rest_api_id = aws_api_gateway_rest_api.api_gw_rest.id
-  type        = var.api_gw_integration_type
-  uri         = var.lambda_invoke_url
+  http_method             = aws_api_gateway_method.api_gw_method.http_method
+  resource_id             = aws_api_gateway_resource.api_gw_resource.id
+  rest_api_id             = aws_api_gateway_rest_api.api_gw_rest.id
+  type                    = var.api_gw_integration_type
+  uri                     = var.lambda_invoke_url
+  integration_http_method = "POST"
 }
 
 resource "aws_api_gateway_deployment" "api_gw_deployment" {

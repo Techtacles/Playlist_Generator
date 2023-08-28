@@ -9,6 +9,7 @@ resource "aws_api_gateway_resource" "api_gw_resource" {
 }
 
 resource "aws_api_gateway_method" "api_gw_method" {
+  authorization = "NONE"
   http_method   = var.api_gw_http_method
   resource_id   = aws_api_gateway_resource.api_gw_resource.id
   rest_api_id   = aws_api_gateway_rest_api.api_gw_rest.id

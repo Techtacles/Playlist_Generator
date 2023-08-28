@@ -32,10 +32,7 @@ variable "api_gw_integration_type" {
 
 }
 
-variable "lambda_invoke_url" {
-  type = string
 
-}
 
 ###### ECR #######
 variable "ecr_name" {

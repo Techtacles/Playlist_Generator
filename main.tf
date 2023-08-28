@@ -30,7 +30,7 @@ module "lambda" {
   api_gw_exec_arn    = module.api_gw.api_gw_lambda_exec_arn
   lambda_memory_size = var.lambda_memory_size
   ecr_image_uri      = module.ecr.ecr_repo_url
-  ecr_sha            = module.ecr.ecr_sha
+  #ecr_sha            = module.ecr.ecr_sha
 
 
 }

@@ -8,7 +8,7 @@ output "ecr_repo_url" {
 
 }
 
-/* output "ecr_sha" {
+output "ecr_sha" {
   value = data.aws_ecr_image.service_image.id
 
-} */
+}

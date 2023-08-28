@@ -1,5 +1,8 @@
 resource "aws_api_gateway_rest_api" "api_gw_rest" {
   name = var.api_gw_name
+  endpoint_configuration {
+    types = ["REGIONAL"]
+  }
 }
 
 resource "aws_api_gateway_resource" "api_gw_resource" {
@@ -49,4 +52,11 @@ resource "aws_api_gateway_stage" "api_gw_stage" {
   deployment_id = aws_api_gateway_deployment.api_gw_deployment.id
   rest_api_id   = aws_api_gateway_rest_api.api_gw_rest.id
   stage_name    = var.api_gw_stage_name
+}
+
+resource "aws_api_gateway_method_response" "response_200" {
+  rest_api_id = aws_api_gateway_rest_api.api_gw_rest.id
+  resource_id = aws_api_gateway_resource.api_gw_resource.id
+  http_method = aws_api_gateway_method.api_gw_method.http_method
+  status_code = "200"
 }

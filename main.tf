@@ -5,6 +5,7 @@ module "api_gw" {
   api_gw_path             = var.api_gw_path
   api_gw_http_method      = var.api_gw_http_method
   api_gw_integration_type = var.api_gw_integration_type
+  lambda_invoke_url       = module.lambda.lambda_invoke_arn
 
 
 }

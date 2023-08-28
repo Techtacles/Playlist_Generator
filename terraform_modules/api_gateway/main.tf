@@ -23,6 +23,7 @@ resource "aws_api_gateway_integration" "api_gw_integration" {
   resource_id = aws_api_gateway_resource.api_gw_resource.id
   rest_api_id = aws_api_gateway_rest_api.api_gw_rest.id
   type        = var.api_gw_integration_type
+  uri         = var.lambda_invoke_url
 }
 
 resource "aws_api_gateway_deployment" "api_gw_deployment" {

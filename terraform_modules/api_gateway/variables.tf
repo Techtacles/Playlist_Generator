@@ -22,3 +22,7 @@ variable "api_gw_integration_type" {
     type = string
   
 }
+variable "lambda_invoke_url" {
+    type = string
+  
+}

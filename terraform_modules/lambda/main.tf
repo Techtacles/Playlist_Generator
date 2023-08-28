@@ -29,7 +29,7 @@ resource "aws_lambda_permission" "lambda_permission" {
   statement_id  = "AllowPlaylistGenLambdaInvoke"
   action        = "lambda:InvokeFunction"
   function_name = var.lambda_fn_name
-  principal     = "apigateway.amazonaws.com"
+  principal     = "lambda.amazonaws.com"
 
   # The /* part allows invocation from any stage, method and resource path
   # within API Gateway.

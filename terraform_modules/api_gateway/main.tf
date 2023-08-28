@@ -27,14 +27,11 @@ resource "aws_api_gateway_integration" "api_gw_integration" {
   integration_http_method = "POST"
 }
 
-resource "aws_api_gateway_stage" "api_gw_stage" {
-  deployment_id = aws_api_gateway_deployment.api_gw_deployment.id
-  rest_api_id   = aws_api_gateway_rest_api.api_gw_rest.id
-  stage_name    = var.api_gw_stage_name
-}
+
 
 resource "aws_api_gateway_deployment" "api_gw_deployment" {
   rest_api_id = aws_api_gateway_rest_api.api_gw_rest.id
+  stage_name  = aws_api_gateway_stage.api_gw_stage.stage_name
 
   triggers = {
     # NOTE: The configuration below will satisfy ordering considerations,
@@ -56,37 +53,9 @@ resource "aws_api_gateway_deployment" "api_gw_deployment" {
   }
 }
 
-
-
-###ENABLE CORS
-resource "aws_api_gateway_method" "options" {
+resource "aws_api_gateway_stage" "api_gw_stage" {
+  deployment_id = aws_api_gateway_deployment.api_gw_deployment.id
   rest_api_id   = aws_api_gateway_rest_api.api_gw_rest.id
-  resource_id   = aws_api_gateway_resource.api_gw_resource.id
-  http_method   = "OPTIONS"
-  authorization = "NONE"
+  stage_name    = var.api_gw_stage_name
 }
 
-resource "aws_api_gateway_method_response" "options_200" {
-  rest_api_id = aws_api_gateway_rest_api.api_gw_rest.id
-  resource_id = aws_api_gateway_resource.api_gw_resource.id
-  http_method = aws_api_gateway_method.options.http_method
-  status_code = "200"
-
-  response_models = {
-    "application/json" = "Empty"
-  }
-
-  response_parameters = {
-    "method.response.header.Access-Control-Allow-Origin" = true
-    "method.response.header.Access-Control-Allow-Methods" = true
-    "method.response.header.Access-Control-Allow-Headers" = true
-  }
-}
-
-resource "aws_api_gateway_integration" "cors_integration" {
-  http_method             = aws_api_gateway_method.api_gw_method.http_method
-  resource_id             = aws_api_gateway_resource.api_gw_resource.id
-  rest_api_id             = aws_api_gateway_rest_api.api_gw_rest.id
-  type                    = "MOCK"
-  integration_http_method = "POST"
-}

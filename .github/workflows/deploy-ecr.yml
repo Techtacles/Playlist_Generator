@@ -50,6 +50,21 @@ jobs:
     - name: Terraform Format
       run: terraform fmt -check
 
+    
+    
+    # Generates an execution plan for Terraform
+    - name: Terraform Plan
+      run: terraform plan -lock=false -var-file="terraform.tfvars"
+
+      # On push to "master", build or change infrastructure according to Terraform configuration files
+      # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
+    - name: Terraform Apply
+      run: terraform apply -lock=false -var-file="terraform.tfvars" -auto-approve -replace=module.api_gateway.aws_api_gateway_deployment.api_gw_deployment
+
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
     - name: Deploy to ECR
       run: |
         aws ecr get-login-password --region us-east-1  | docker login --username AWS --password-stdin $ECR_REPO_URI 
@@ -60,19 +75,6 @@ jobs:
       env:
         ECR_REPO_NAME : ${{ secrets.ECR_REPO_NAME }} 
         ECR_REPO_URI : ${{ secrets.REPO_URI }}
-    
-    # Generates an execution plan for Terraform
-    - name: Terraform Plan
-      run: terraform plan -lock=false -var-file="terraform.tfvars"
-
-      # On push to "master", build or change infrastructure according to Terraform configuration files
-      # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
-    - name: Terraform Apply
-      run: terraform apply -lock=false -var-file="terraform.tfvars" -auto-approve
-
-
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
 
      
           

@@ -56,10 +56,7 @@ variable "lambda_src_file_path" {
 
 }
 
-variable "lambda_output_zip" {
-  type = string
 
-}
 
 variable "lambda_fn_name" {
   type = string

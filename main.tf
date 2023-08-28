@@ -22,7 +22,6 @@ module "lambda" {
   source               = "./terraform_modules/lambda"
   lambda_role          = var.lambda_role
   lambda_src_file_path = var.lambda_src_file_path
-  lambda_output_zip    = var.lambda_output_zip
   lambda_fn_name       = var.lambda_fn_name
   lambda_handler       = var.lambda_handler
   lambda_runtime       = var.lambda_runtime

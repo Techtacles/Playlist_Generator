@@ -1,46 +1,43 @@
 variable "lambda_role" {
-    type = string
-  
+  type = string
+
 }
 variable "lambda_src_file_path" {
-    type = string
-  
+  type = string
+
 }
 
-variable "lambda_output_zip" {
-    type = string
-  
-}
+
 
 variable "lambda_fn_name" {
-    type = string
-  
+  type = string
+
 }
 
 variable "lambda_handler" {
-    type = string
-  
+  type = string
+
 }
 variable "lambda_runtime" {
-    type = string
-  
+  type = string
+
 }
 variable "lambda_timeout" {
-    type = number
-  
+  type = number
+
 }
 
 variable "api_gw_exec_arn" {
-    type = string
-  
+  type = string
+
 }
 
 variable "lambda_memory_size" {
-    type = number
-  
+  type = number
+
 }
 
 variable "ecr_image_uri" {
-    type = string
-  
+  type = string
+
 }

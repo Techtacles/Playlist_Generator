@@ -28,7 +28,7 @@ module "lambda" {
   lambda_timeout       = var.lambda_timeout
   api_gw_exec_arn      = module.api_gw.api_gw_lambda_exec_arn
   lambda_memory_size   = var.lambda_memory_size
-  ecr_image_uri        = module.ecr.ecr_arn
+  ecr_image_uri        = module.ecr.ecr_repo_url
 
 
 }

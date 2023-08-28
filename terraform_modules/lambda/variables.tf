@@ -39,3 +39,8 @@ variable "lambda_memory_size" {
     type = number
   
 }
+
+variable "ecr_image_uri" {
+    type = string
+  
+}

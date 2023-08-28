@@ -80,3 +80,11 @@ resource "aws_api_gateway_method_response" "options_200" {
     "method.response.header.Access-Control-Allow-Headers" = true
   }
 }
+
+resource "aws_api_gateway_integration" "cors_integration" {
+  http_method             = aws_api_gateway_method.options.http_method
+  resource_id             = aws_api_gateway_resource.api_gw_resource.id
+  rest_api_id             = aws_api_gateway_rest_api.api_gw_rest.id
+  type                    = "MOCK"
+  integration_http_method = "POST"
+}

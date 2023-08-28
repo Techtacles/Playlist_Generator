@@ -73,6 +73,6 @@ jobs:
         docker push $ECR_REPO_URI/$ECR_REPO_NAME:latest
       env:
         ECR_REPO_NAME : ${{ secrets.ECR_REPO_NAME }} 
-        ECR_REPO_URI : ${{ secrets.ECR_REPO_URI }} 
+        ECR_REPO_URI : ${{ secrets.REPO_URI }} 
           
       

@@ -3,15 +3,8 @@ variable "aws_region" {
 
 }
 
-variable "backend_key" {
-  type = string
 
-}
 
-variable "bucket_name" {
-  type = string
-
-}
 
 ###### API GATEWAY ######
 variable "api_gw_stage_name" {

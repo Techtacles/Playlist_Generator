@@ -7,7 +7,7 @@ resource "aws_ecr_repository" "playlist_gen_ecr" {
   }
 }
 
-data "aws_ecr_image" "service_image" {
+/* data "aws_ecr_image" "service_image" {
   repository_name = var.ecr_name
   image_tag       = "latest"
-}
+} */

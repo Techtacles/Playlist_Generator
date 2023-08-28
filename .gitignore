@@ -1,0 +1,7 @@
+*.vscode
+*.pycache
+DS_Store
+*.gitattributes
+*.cache
+*.tfstate
+*.tfvars

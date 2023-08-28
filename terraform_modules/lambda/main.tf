@@ -12,6 +12,7 @@ resource "aws_lambda_function" "lambda_fn" {
   timeout     = var.lambda_timeout
   memory_size = var.lambda_memory_size
   image_uri   = var.ecr_image_uri
+  package_type = "Image"
 
 
   environment {

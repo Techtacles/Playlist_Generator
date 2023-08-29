@@ -115,10 +115,8 @@ resource "aws_api_gateway_integration_response" "options" {
   rest_api_id = aws_api_gateway_rest_api.api_gw_rest.id
   resource_id = aws_api_gateway_resource.api_gw_resource.id
   http_method = aws_api_gateway_integration.cors_integration.http_method
-  status_code = "200"
-  response_parameters = {
-    "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
-    "method.response.header.Access-Control-Allow-Methods" = "'POST,OPTIONS'"
-    "method.response.header.Access-Control-Allow-Origin"  = "'*'"
+  status_code = aws_api_gateway_method_response.options_200.status_code
+  response_templates = {
+    "application/json" = ""
   }
 }

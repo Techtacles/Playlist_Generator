@@ -39,7 +39,7 @@ resource "aws_api_gateway_integration" "api_gw_integration" {
   integration_http_method = "POST"
 }
 
-/* resource "aws_api_gateway_integration_response" "api_gw_int_res" {
+resource "aws_api_gateway_integration_response" "api_gw_int_res" {
   rest_api_id = aws_api_gateway_rest_api.api_gw_rest.id
   resource_id = aws_api_gateway_resource.api_gw_resource.id
   http_method = aws_api_gateway_integration.api_gw_integration.http_method
@@ -47,7 +47,7 @@ resource "aws_api_gateway_integration" "api_gw_integration" {
   response_templates = {
     "application/json" = ""
   }
-} */
+}
 
 resource "aws_api_gateway_deployment" "api_gw_deployment" {
   rest_api_id = aws_api_gateway_rest_api.api_gw_rest.id

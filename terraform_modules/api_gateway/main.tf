@@ -18,6 +18,18 @@ resource "aws_api_gateway_method" "api_gw_method" {
   rest_api_id   = aws_api_gateway_rest_api.api_gw_rest.id
 }
 
+resource "aws_api_gateway_method_response" "api_gw_method_res" {
+  rest_api_id = aws_api_gateway_rest_api.api_gw_rest.id
+  resource_id = aws_api_gateway_resource.api_gw_resource.id
+  http_method = aws_api_gateway_method.api_gw_method.http_method
+  status_code = "200"
+
+  response_models = {
+    "application/json" = "Empty"
+  }
+
+}
+
 resource "aws_api_gateway_integration" "api_gw_integration" {
   http_method             = aws_api_gateway_method.api_gw_method.http_method
   resource_id             = aws_api_gateway_resource.api_gw_resource.id
@@ -25,6 +37,16 @@ resource "aws_api_gateway_integration" "api_gw_integration" {
   type                    = var.api_gw_integration_type
   uri                     = var.lambda_invoke_url
   integration_http_method = "POST"
+}
+
+resource "aws_api_gateway_integration_response" "api_gw_int_res" {
+  rest_api_id = aws_api_gateway_rest_api.api_gw_rest.id
+  resource_id = aws_api_gateway_resource.api_gw_resource.id
+  http_method = aws_api_gateway_integration.api_gw_integration.http_method
+  status_code = aws_api_gateway_method_response.api_gw_method_res.status_code
+  response_templates = {
+    "application/json" = ""
+  }
 }
 
 resource "aws_api_gateway_deployment" "api_gw_deployment" {
@@ -56,7 +78,7 @@ resource "aws_api_gateway_stage" "api_gw_stage" {
   stage_name    = var.api_gw_stage_name
 }
 
-###ENABLE CORS
+###ENABLE CORS#######
 resource "aws_api_gateway_method" "options" {
   rest_api_id   = aws_api_gateway_rest_api.api_gw_rest.id
   resource_id   = aws_api_gateway_resource.api_gw_resource.id
